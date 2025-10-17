@@ -8,7 +8,7 @@ import { connectDB } from "./config/db.js";
 import authRouter from "./routes/authRoutes.js";
 import carRouter from "./routes/carRoutes.js";
 import bookingRouter from "./routes/bookingRoutes.js";
-
+import paymentRouter from "./routes/paymentRoutes.js";
 
 
 dotenv.config();
@@ -35,16 +35,15 @@ app.use(
   "/uploads",
   (req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
-    next();
+    next();                   
   },
   express.static(path.join(process.cwd(), "uploads"))
 );
 
 // routes
 app.use("/api/cars", carRouter);
-app.use("/api/bookings", bookingRouter);
+app.use("/api/bookings", bookingRouter);    
 app.use("/api/auth", authRouter);
-app.use("/api/payments", paymentRouter);
 
 app.get("/api/ping", (req, res) => res.json({ ok: true, time: Date.now() }));
 
