@@ -21,7 +21,10 @@ const PORT = process.env.PORT || 5000;
 
 // middlewares
 
-app.use(cors()); // allow CORS for API calls
+app.use(cors({
+  origin: ['https://go-wheels-frontend.vercel.app', 'http://localhost:3000'],
+  credentials: true
+})); // allow CORS for API calls with specific origins
 app.use(
   helmet({
     crossOriginResourcePolicy: { policy: "cross-origin" }, // <-- important
